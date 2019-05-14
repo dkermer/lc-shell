@@ -238,3 +238,40 @@ as long as learners using Windows do not run into roadblocks such as:
 ## Windows
 
 With the introduction of [GitforWindows](https://gitforwindows.org/), it is much easier to setup BASH in Windows. It is always important to test it out, though. 
+
+
+## Setting up the Unix Environment
+
+The **.bashrc** file is in your user folder (on Windows C:/Users/*Username*).
+Make sure to [display hidden files](https://support.microsoft.com/en-us/help/14201/windows-show-hidden-files). 
+
+### Simplify the Prompt
+Note that the BASH prompt and window looks *very* different in the different operating systems. 
+So, it can be useful to simplify your display. SWC uses a simple "$" prompt. 
+See more information about [customizing your BASH prompt](https://www.howtogeek.com/307701/how-to-customize-and-colorize-your-bash-prompt/) .
+
+Add a line starting with "PS1=" to **.bashrc**
+
+*Examples*:
+* A simple $ and space:\
+	`PS1='\$ '`
+* A $ with a blue background and line numbers:\
+	`PS1='\! \[\e[1;37m\]\[\e[44m\]\$\[\e[1;40m\]\[\e[1;37m\] '`
+* A unix-style prompt:\
+	`PS1='\[\e[0;37m\]\[\e[44m\]user:\[\e[42m\]\w\[\e[40m\]\[\e[1;31m\]\$\[\e[1;37m\] '` 
+
+
+### Display a Log
+Learners may get behind and find it useful to see recent commands. 
+
+**Option 1**: Install the split windows script from <https://github.com/rgaiacs/swc-shell-split-window>. 
+* It requires tmux, which isn't natively supported in windows. But, there are options:
+	* https://blog.pjsen.eu/?p=440
+	* https://veerasundar.com/blog/2018/03/how-to-split-the-terminal-into-multiple-views-in-windows-10/
+
+**Option 2**: Use a separate file viewer. A good cross-platform viewer is [glogg](http://glogg.bonnefon.org/). Atom can also be set up to do this. 
+1. Add the following line to **.bashrc** so that it will update the history immediately:\
+		`PROMPT_COMMAND="history -a;$PROMPT_COMMAND"`
+1. In the file viewer, open the file **.bash_history** (in the same folder as .bashrc)
+1. Set the viewer to automatically load file changes (in glogg, go to "View" then "Follow File") 
+1. If you have the prompt display line numbers, you can show those too.  
